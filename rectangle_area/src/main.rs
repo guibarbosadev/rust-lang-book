@@ -1,10 +1,16 @@
 use std::io;
 
+struct Rectangle {
+    width: i32,
+    height: i32,
+}
+
 fn main() {
     let mut width = String::from("");
     let mut height = String::from("");
     let parsed_width: i32;
     let parsed_height: i32;
+    let rectangle: Rectangle;
     let area: i32;
 
     loop {
@@ -34,11 +40,15 @@ fn main() {
         break;
     }
 
-    area = calculate_area(parsed_width, parsed_height);
+    rectangle = Rectangle {
+        width: parsed_width,
+        height: parsed_height,
+    };
+    area = calculate_area(&rectangle);
 
     println!("Area is: {}", &area);
 }
 
-fn calculate_area(width: i32, height: i32) -> i32 {
-    return width * height;
+fn calculate_area(rectangle: &Rectangle) -> i32 {
+    return rectangle.width * rectangle.height;
 }
